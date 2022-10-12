@@ -5,9 +5,11 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     public LayerMask draggable;
+    public Bottle currentBottle;
     
     private GameObject currentSprite;
     private Vector3 offset;
+
 
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class InputManager : MonoBehaviour
             {
                 Debug.Log(hit.collider.name);
                 currentSprite = hit.collider.gameObject;
+                currentBottle = hit.collider.gameObject.GetComponent<Bottle>();
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 offset = mousePos - currentSprite.transform.position;
             }
@@ -41,6 +44,8 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             currentSprite = null;
+            currentBottle.unPour();
+            currentBottle = null;
             offset = Vector3.zero;
         }
 
