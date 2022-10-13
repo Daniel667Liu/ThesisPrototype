@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
+    public bool selected;
+
     public GameObject hourHand;
     public GameObject minuteHand;
     bool canControl = true;
@@ -13,11 +15,16 @@ public class Clock : MonoBehaviour
     void Start()
     {
         audioSource = GetComponentInChildren<AudioSource>();
+
+        selected = false;
     }
 
     void Update()
     {
-        ClockRun();
+        if (selected)
+        {
+            ClockRun();
+        }
         AutoRotate();
     }
     void ClockRun() 
@@ -28,8 +35,8 @@ public class Clock : MonoBehaviour
         {
             Rigidbody hourRB = hourHand.GetComponent<Rigidbody>();
             Rigidbody minuteRB = minuteHand.GetComponent<Rigidbody>();
-            hourRB.AddRelativeTorque(new Vector3(0, 0, -8f*Input.mouseScrollDelta.y*(Mathf.Abs(hourRB.angularVelocity.z)  + 0.02f)), ForceMode.Force);
-            minuteRB.AddRelativeTorque(new Vector3(0, 0, -8f * Input.mouseScrollDelta.y * (Mathf.Abs(minuteRB.angularVelocity.z)  + 0.02f)), ForceMode.Force);
+            hourRB.AddRelativeTorque(new Vector3(0, 0, 8f*Input.mouseScrollDelta.y*(Mathf.Abs(hourRB.angularVelocity.z)  + 0.02f)), ForceMode.Force);
+            minuteRB.AddRelativeTorque(new Vector3(0, 0, 8f * Input.mouseScrollDelta.y * (Mathf.Abs(minuteRB.angularVelocity.z)  + 0.02f)), ForceMode.Force);
         }
         if (minuteHand.GetComponent<Rigidbody>().angularVelocity.z <= -6) 
         {

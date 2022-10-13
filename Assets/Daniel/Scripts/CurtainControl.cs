@@ -18,11 +18,15 @@ public class CurtainControl : MonoBehaviour
     {
         pd = GetComponent<PlayableDirector>();
         audioSource = GetComponentInChildren<AudioSource>();
+
+
+        this.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        pd.Play();
         DragCurtain();
         SoundControl();
     }
@@ -81,5 +85,10 @@ public class CurtainControl : MonoBehaviour
             b = true;
         }
 
+    }
+
+    public void StopCurtain()
+    {
+        pd.Pause();
     }
 }

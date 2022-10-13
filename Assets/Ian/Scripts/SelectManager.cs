@@ -12,6 +12,27 @@ public class SelectManager : MonoBehaviour
     public float blackBoardSizeSpeed;
     public ChalkBoard chalkBoard;
 
+    [Header("Curtains")]
+    public Vector3 curtainsCameraPos;
+    public float curtainsCameraSize;
+    public float curtainsZoomSpeed;
+    public float curtainsSizeSpeed;
+    public CurtainControl curtains;
+
+    [Header("Door")]
+    public Vector3 doorCameraPos;
+    public float doorCameraSize;
+    public float doorZoomSpeed;
+    public float doorSizeSpeed;
+    public DoorLock door;
+
+    [Header("Clock")]
+    public Vector3 clockCameraPos;
+    public float clockCameraSize;
+    public float clockZoomSpeed;
+    public float clockSizeSpeed;
+    public Clock clock;
+
     private Vector3 startPos;
     private float startSize;
     private float zoomPosSpeed;
@@ -45,6 +66,18 @@ public class SelectManager : MonoBehaviour
                     case "BlackBoard":
                         hit.collider.gameObject.GetComponent<ChalkBoard>().enabled = true;
                         zoom(blackBoardCameraPos, blackBoardCameraSize, blackBoardZoomSpeed, blackBoardSizeSpeed);
+                        break;
+                    case "Curtains":
+                        hit.collider.gameObject.GetComponent<CurtainControl>().enabled = true;
+                        zoom(curtainsCameraPos, curtainsCameraSize, curtainsZoomSpeed, curtainsSizeSpeed);
+                        break;
+                    case "DoorSelect":
+                        hit.collider.gameObject.GetComponent<DoorLock>().enabled = true;
+                        zoom(doorCameraPos, doorCameraSize, doorZoomSpeed, doorSizeSpeed);
+                        break;
+                    case "Clock":
+                        hit.collider.gameObject.GetComponent<Clock>().selected = true;
+                        zoom(clockCameraPos, clockCameraSize, clockZoomSpeed, clockSizeSpeed);
                         break;
                 }
             }
@@ -89,6 +122,11 @@ public class SelectManager : MonoBehaviour
     {
         // blackboard
         chalkBoard.enabled = false;
+
+        curtains.enabled = false;
+        curtains.StopCurtain();
+
+        clock.selected = false;
 
         //others
     }

@@ -10,6 +10,9 @@ TagManager:
   - PaperPlane
   - BlackBoard
   - Door
+  - Curtains
+  - DoorSelect
+  - Clock
   layers:
   - Default
   - TransparentFX

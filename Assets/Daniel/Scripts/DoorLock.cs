@@ -13,10 +13,13 @@ public class DoorLock : MonoBehaviour
     public AudioClip unlocked;
     public AudioClip doorClose;
     bool doorOpened;
+    public GameObject[] people;
     void Start()
     {
         doorAnimator = GetComponent<Animator>();
         audioSource = GetComponentInChildren<AudioSource>();
+
+        this.enabled = false;
     }
 
     void Update()
@@ -24,10 +27,12 @@ public class DoorLock : MonoBehaviour
         OpenDoor();
 
         //for test
+        /*
         if (Input.GetKey(KeyCode.Space)) 
         {
-            CloseDoor();
+            PeopleWalkIn();
         }
+        */
     }
 
     void OpenDoor()
@@ -120,5 +125,13 @@ public class DoorLock : MonoBehaviour
     {
         audioSource.clip = doorClose;
         audioSource.Play();
+    }
+
+    public void PeopleWalkIn() 
+    {
+        for (int i = 0; i < people.Length; i++) 
+        {
+            people[i].GetComponent<Animator>().enabled = true;
+        }
     }
 }
