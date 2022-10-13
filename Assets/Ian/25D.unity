@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 106523064}
   m_Layer: 0
   m_Name: ChalkBoard
-  m_TagString: Untagged
+  m_TagString: BlackBoard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,6 +353,7 @@ MonoBehaviour:
   wipe: {fileID: 426015442}
   wipeRadius: 2
   currentKeys: []
+  dirs: []
 --- !u!65 &106523065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -424,7 +425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106523063}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6308, z: -1.99}
+  m_LocalPosition: {x: 0, y: 0.6308, z: 3.52}
   m_LocalScale: {x: 3.4516, y: 2.2616, z: 0.48101276}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1018,6 +1019,7 @@ GameObject:
   - component: {fileID: 1304420115}
   - component: {fileID: 1304420114}
   - component: {fileID: 1304420113}
+  - component: {fileID: 1304420116}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1091,6 +1093,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
+--- !u!114 &1304420116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304420112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4568bd5dc007714c823b60e65983f4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackBoardCameraPos: {x: 5.82, y: 5.26, z: -2.69}
+  blackBoardCameraSize: 1.9
+  blackBoardZoomSpeed: 6
+  blackBoardSizeSpeed: 9.8
 --- !u!1 &1613117789
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - Enemy
   - PaperPlane
+  - BlackBoard
   layers:
   - Default
   - TransparentFX
