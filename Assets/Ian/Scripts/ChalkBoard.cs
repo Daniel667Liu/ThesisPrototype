@@ -34,6 +34,8 @@ public class ChalkBoard : MonoBehaviour
         }
         transparentSprite.texture.SetPixels(colors);
         transparentSprite.texture.Apply();
+
+        this.enabled = false;
     }
 
     // Update is called once per frame
