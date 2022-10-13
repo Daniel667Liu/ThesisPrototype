@@ -11788,7 +11788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f746b5ebfe9df47830c8f4099bc96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwThreshold: 0.25
+  throwThreshold: 0.23
 --- !u!65 &1217186607
 BoxCollider:
   m_ObjectHideFlags: 0

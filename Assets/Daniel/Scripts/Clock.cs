@@ -35,8 +35,8 @@ public class Clock : MonoBehaviour
         {
             Rigidbody hourRB = hourHand.GetComponent<Rigidbody>();
             Rigidbody minuteRB = minuteHand.GetComponent<Rigidbody>();
-            hourRB.AddRelativeTorque(new Vector3(0, 0, 8f*Input.mouseScrollDelta.y*(Mathf.Abs(hourRB.angularVelocity.z)  + 0.02f)), ForceMode.Force);
-            minuteRB.AddRelativeTorque(new Vector3(0, 0, 8f * Input.mouseScrollDelta.y * (Mathf.Abs(minuteRB.angularVelocity.z)  + 0.02f)), ForceMode.Force);
+            hourRB.AddRelativeTorque(new Vector3(0, 0, 8f*Input.mouseScrollDelta.y*(Mathf.Abs(hourRB.angularVelocity.z)  + 0.08f)), ForceMode.Force);
+            minuteRB.AddRelativeTorque(new Vector3(0, 0, 8f * Input.mouseScrollDelta.y * (Mathf.Abs(minuteRB.angularVelocity.z)  + 0.08f)), ForceMode.Force);
         }
         if (minuteHand.GetComponent<Rigidbody>().angularVelocity.z <= -6) 
         {

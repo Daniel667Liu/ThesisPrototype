@@ -14,6 +14,9 @@ public class DoorLock : MonoBehaviour
     public AudioClip doorClose;
     bool doorOpened;
     public GameObject[] people;
+
+    private bool keyIn;
+
     void Start()
     {
         doorAnimator = GetComponent<Animator>();
@@ -43,12 +46,13 @@ public class DoorLock : MonoBehaviour
             {
                 iniMousePos = Input.mousePosition;
                 doorAnimator.SetTrigger("InsertKey");
+                keyIn = true;
                 PlayUnlockingSound();
             }
             if (Input.GetMouseButton(0))
             {
                 //if the line length is longer than 100, get the dir line
-                if (Vector2.Distance(Input.mousePosition, iniMousePos) > 100)
+                if (Vector2.Distance(Input.mousePosition, iniMousePos) > 20)
                 {
                     Vector2 pos = Input.mousePosition;
                     Vector2 dir = pos - iniMousePos;
@@ -61,7 +65,7 @@ public class DoorLock : MonoBehaviour
                     else
                     {
                         //check the angle between this dir and last dir
-                        if (Vector2.SignedAngle(dir, dirs[dirs.Count - 1]) > 0 && Vector2.SignedAngle(dir, dirs[dirs.Count - 1]) < 60)
+                        if (Vector2.SignedAngle(dir, dirs[dirs.Count - 1]) > 0 && Vector2.SignedAngle(dir, dirs[dirs.Count - 1]) < 80)
                         {
                             dirs.Add(dir);
                         }
@@ -90,9 +94,10 @@ public class DoorLock : MonoBehaviour
             {
                 dirs.Clear();
                 iniMousePos = Vector2.zero;
-                if (key != null)
+                if (key != null && keyIn)
                 {
                     doorAnimator.SetTrigger("Reverse");
+                    keyIn = false;
                 }
             }
         }

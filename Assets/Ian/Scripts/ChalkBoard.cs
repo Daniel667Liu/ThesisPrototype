@@ -49,7 +49,7 @@ public class ChalkBoard : MonoBehaviour
             foreach (char c in inputString)
             {
                 string s = c.ToString().ToLower();
-                if (!currentKeys.Contains(s) && !s.Equals(" ") && !s.Equals("\n"))
+                if (!currentKeys.Contains(s) && !s.Equals(" ") && (int)c != 8 && (int)c != 13)
                 {
                     currentKeys.Add(s);
                 }
