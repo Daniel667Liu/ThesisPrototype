@@ -10,6 +10,7 @@ public class SelectManager : MonoBehaviour
     public float blackBoardCameraSize;
     public float blackBoardZoomSpeed;
     public float blackBoardSizeSpeed;
+    public ChalkBoard chalkBoard;
 
     private Vector3 startPos;
     private float startSize;
@@ -78,8 +79,17 @@ public class SelectManager : MonoBehaviour
 
     private void unZoom()
     {
+        disableAll();
         targetPos = startPos;
         targetSize = startSize;
         zooming = true;
+    }
+
+    private void disableAll()
+    {
+        // blackboard
+        chalkBoard.enabled = false;
+
+        //others
     }
 }
