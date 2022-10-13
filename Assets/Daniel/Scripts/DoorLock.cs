@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DoorLock : MonoBehaviour
 {
-    public Vector3 iniMousePos;
+    public Vector2 iniMousePos;
+    public List<Vector2> dirs;
     
     void Start()
     {
@@ -21,19 +22,48 @@ public class DoorLock : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             iniMousePos = Input.mousePosition;
-            Debug.Log(iniMousePos);
         }
         if (Input.GetMouseButton(0))
         {
-            if ((Input.mousePosition - iniMousePos).magnitude > 100)
+            //if the line length is longer than 100, get the dir line
+            if (Vector2.Distance(Input.mousePosition,iniMousePos)>100)
             {
-                Vector3 newPos = Input.mousePosition;
-                Vector3 halfPoint = (iniMousePos + newPos) / 2;
-                Vector3 interVec = Input.mousePosition - iniMousePos;
-                float angle = Vector3.SignedAngle(interVec, new Vector3(1, 0, 0),new Vector3(0,0,-1));
-                Debug.Log(angle);
-            }
+                Vector2 pos = Input.mousePosition;
+                Vector2 dir = pos - iniMousePos;
 
+                if (dirs.Count == 0) //there is no dir in this list
+                {
+                    dirs.Add(dir);
+                }
+                else 
+                {
+                    //check the angle between this dir and last dir
+                    if (Vector2.SignedAngle(dir, dirs[dirs.Count - 1]) > 0 && Vector2.SignedAngle(dir, dirs[dirs.Count - 1]) < 60)
+                    {
+                        dirs.Add(dir);
+                    }
+                    //else clear the list and add this dir into list
+                    else 
+                    {
+                        dirs.Clear();
+                        dirs.Add(dir);
+                    }
+                }
+                iniMousePos = pos;
+                
+            }
+            if (dirs.Count >= 6) 
+            {
+                //do what need to open the door
+                Debug.Log("open the door");
+                dirs.Clear();
+            }
+        }
+        //end the check process and clear the list
+        if (Input.GetMouseButtonUp(0)) 
+        {
+            dirs.Clear();
+            iniMousePos = Vector2.zero;
         }
     }
 
