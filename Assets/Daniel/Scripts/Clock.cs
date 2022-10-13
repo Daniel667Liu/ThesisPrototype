@@ -7,10 +7,12 @@ public class Clock : MonoBehaviour
     public GameObject hourHand;
     public GameObject minuteHand;
     bool canControl = true;
+    private AudioSource audioSource;
+    bool soundPlayed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     void Update()
@@ -47,6 +49,11 @@ public class Clock : MonoBehaviour
             Rigidbody minuteRB = minuteHand.GetComponent<Rigidbody>();
             hourRB.angularVelocity = new Vector3(0, 0, -0.4f);
             minuteRB.angularVelocity = new Vector3(0, 0, -6.1f);
+            if (!soundPlayed) 
+            {
+                audioSource.Play();
+                soundPlayed = true;
+            }
         }
         
         
