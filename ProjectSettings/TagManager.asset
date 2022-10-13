@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cup
+  - Laser
+  - Enemy
+  - PaperPlane
   layers:
   - Default
   - TransparentFX
