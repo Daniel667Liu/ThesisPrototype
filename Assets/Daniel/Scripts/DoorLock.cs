@@ -6,10 +6,11 @@ public class DoorLock : MonoBehaviour
 {
     public Vector2 iniMousePos;
     public List<Vector2> dirs;
-    
+    public GameObject key;
+    private Animator doorAnimator;
     void Start()
     {
-        
+        doorAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -22,6 +23,7 @@ public class DoorLock : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             iniMousePos = Input.mousePosition;
+            doorAnimator.SetTrigger("InsertKey");
         }
         if (Input.GetMouseButton(0))
         {
@@ -57,6 +59,7 @@ public class DoorLock : MonoBehaviour
                 //do what need to open the door
                 Debug.Log("open the door");
                 dirs.Clear();
+                doorAnimator.SetTrigger("RotateKey");
             }
         }
         //end the check process and clear the list
@@ -64,7 +67,15 @@ public class DoorLock : MonoBehaviour
         {
             dirs.Clear();
             iniMousePos = Vector2.zero;
+            if (key != null) 
+            {
+                doorAnimator.SetTrigger("Reverse");
+            }
         }
     }
 
+    public void DestroyKey() 
+    {
+        Destroy(key);
+    }
 }
