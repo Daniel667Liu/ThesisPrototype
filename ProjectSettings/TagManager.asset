@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - PaperPlane
   - BlackBoard
+  - Door
   layers:
   - Default
   - TransparentFX
