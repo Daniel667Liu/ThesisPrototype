@@ -181,9 +181,11 @@ public class ChalkBoard : MonoBehaviour
                 prevPoint = mousePos;
 
 
-                if (dirs.Count > 4 && dirs[dirs.Count-1].x > 0 && dirs[dirs.Count - 1].y > 0 && (dirs[dirs.Count-1].y - dirs[0].y) > -15f)
+                if (dirs.Count > 4 && dirs[dirs.Count-1].x > 0 && dirs[dirs.Count - 1].y > 0 && (dirs[dirs.Count-1].y - dirs[0].y) > -20f)
                 {
                     Debug.Log("circle!");
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    Invoke("showEye", 1.5f);
                     dirs.Clear();
                 }
             }
@@ -198,6 +200,11 @@ public class ChalkBoard : MonoBehaviour
             distCounter = 0;
             prevMousePos = Vector2.zero;
         }
+    }
+
+    private void showEye()
+    {
+        transform.GetChild(1).gameObject.SetActive(true);
     }
 
     private Vector2 getKeyPos(string key)

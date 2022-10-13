@@ -42,7 +42,7 @@ public class PaperPlane : MonoBehaviour
             Vector3 delta = mousePos - startPos;
             transform.position = startPos + delta * 0.05f;
 
-            Debug.Log(Screen.width);
+            //Debug.Log(Screen.width);
             if (prevPos != Vector3.zero && Vector3.Distance(transform.position, prevPos) > throwThreshold / (Screen.width / 800f))
             {
 
@@ -54,6 +54,8 @@ public class PaperPlane : MonoBehaviour
                     selected = false;
 
                     // trigger animation
+                    GetComponent<Animator>().enabled = true;
+                    GetComponent<Animator>().SetTrigger("fly");
                 }
             }
 
@@ -65,6 +67,7 @@ public class PaperPlane : MonoBehaviour
         {
             selected = false;
             transform.position = startPos;
+            prevPos = Vector3.zero;
         }
     }
 
