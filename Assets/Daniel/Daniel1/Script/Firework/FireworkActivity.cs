@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class FireworkActivity : MonoBehaviour
 {
+    Animator animator;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (TryGetComponent<Animator>(out animator))
+        {
+        }
+        else 
+        {
+            Debug.Log("no animator attached to firework");
+        }
+        if (TryGetComponent<AudioSource>(out audioSource))
+        {
+        }
+        else 
+        {
+            Debug.Log("no audio source attached to the firework");
+        }
     }
 
     // Update is called once per frame
@@ -20,19 +35,19 @@ public class FireworkActivity : MonoBehaviour
     //playe the effect of halfway
     public void HalfSuccess() 
     {
-        Debug.Log("pressed but didnt hold");
+        
     }
 
 
     //play the effect of successful interaction
     public void Success() 
     {
-        Debug.Log("pressed and held");
+       
     }
 
     //play the effect when of start to interact with
     public void StartInteract() 
     {
-        Debug.Log("press once");
+       
     }
 }
