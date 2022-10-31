@@ -41,4 +41,11 @@ public class OldManActivity : MonoBehaviour
         //seccussfully feed
         //should set a bool in animator, since this func  will be called muti-times
     }
+
+
+    //call when the dog is near and bark
+    public void Bark() 
+    {
+        animator.SetTrigger("Bark");
+    }
 }
