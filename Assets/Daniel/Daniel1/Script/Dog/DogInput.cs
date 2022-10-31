@@ -7,7 +7,7 @@ public class DogInput : MonoBehaviour
     KeyCode key1;
     public float CD = 1f;
     float waitedTime;
-    public bool nearOtherDog;
+    
     DogActivity activity;
     // Start is called before the first frame update
     void Start()
@@ -35,16 +35,8 @@ public class DogInput : MonoBehaviour
             if (waitedTime >= CD) 
             {
                 waitedTime = 0f;
-                if (nearOtherDog)
-                {
-                    //if is near another dog
-                    activity.DogPlay();
-                }
-                else
-                {
-                    //if the dog is standing alone
-                    activity.DogBark();
-                }
+                activity.DogBark();
+                 
             }
             
         }
