@@ -10,7 +10,7 @@ public class DogActivity : MonoBehaviour
     public GameObject[] nearObjects;//put in sequence: god, band,old man
     public float distanceThreshold = 50f;
     
-    int nearestObject = 0;
+    public int nearestObject = 0;
     //0:near nothing
     //1:dog
     //2:band
@@ -86,14 +86,14 @@ public class DogActivity : MonoBehaviour
             Vector3 pos = nearObjects[i].GetComponent<Transform>().position;
             distances[i] = Vector3.Distance(transform.position, pos);
         }
-        float minDistance = distances[0];
+        float minDistance = distanceThreshold;
         nearestObject = 0;
         for (int i = 0; i < distances.Length; i++)
         {
             if (distances[i] < minDistance)
             {
                 minDistance = distances[i];
-                nearestObject = i;
+                nearestObject = i+1;
             }
         }
         Debug.Log("cal");
