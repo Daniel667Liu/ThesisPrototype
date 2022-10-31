@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CelloActivity : MonoBehaviour
+public class DoublebassActivity : MonoBehaviour
 {
-    public CelloInput input;
+    public PianoInput input;
 
     private Animator anim;
     private AudioSource audioSource;
@@ -16,7 +16,7 @@ public class CelloActivity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        input = GetComponent<CelloInput>();
+        input = GetComponent<PianoInput>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -47,12 +47,9 @@ public class CelloActivity : MonoBehaviour
             if (anim != null) anim.SetTrigger("startPlayingPlaceholder"); //TODO-CHANGE THIS TO THE ACTUAL TRIGGER OF THE ANIMATION
             if (audioSource != null) audioSource.Play();
         }
-        if (playMeter > 6f)
+        if (playMeter > 7f)
         {
             isPlayingPerma = true;
-
-            // TODO add perma playing animation and audio
-
         }
     }
 }
