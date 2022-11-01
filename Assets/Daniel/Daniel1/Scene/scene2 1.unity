@@ -6060,6 +6060,7 @@ MonoBehaviour:
   - {fileID: 693256272}
   distanceThreshold: 50
   nearestObject: 0
+  peopleWalking: 0
   anotherDog: {fileID: 0}
   band: {fileID: 0}
 --- !u!95 &1647739679
@@ -7489,6 +7490,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2116678497}
   - component: {fileID: 2116678498}
+  - component: {fileID: 2116678500}
+  - component: {fileID: 2116678499}
   m_Layer: 0
   m_Name: Dog_People
   m_TagString: Untagged
@@ -7503,8 +7506,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116678496}
-  m_LocalRotation: {x: 0, y: 0.3420201, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0.05, y: 0.093, z: -9.36}
+  m_LocalRotation: {x: -0, y: 0.41861942, z: -0, w: 0.9081618}
+  m_LocalPosition: {x: 0.446, y: 0.093, z: -10.078}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7512,7 +7515,7 @@ Transform:
   - {fileID: 147905251}
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 40, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 49.495, z: 0}
 --- !u!95 &2116678498
 Animator:
   serializedVersion: 4
@@ -7533,6 +7536,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2116678499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116678496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724ef1aa64f5bfc4e8506394779cc71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2116678500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116678496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6166dfc86c6a1e44a6e06488aa8975c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dogAnimator: {fileID: 1647739679}
+  peopleAnimator: {fileID: 147905252}
 --- !u!1001 &1339387302575924097
 PrefabInstance:
   m_ObjectHideFlags: 0

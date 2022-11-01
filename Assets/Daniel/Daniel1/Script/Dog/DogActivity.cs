@@ -11,6 +11,8 @@ public class DogActivity : MonoBehaviour
     public float distanceThreshold = 50f;
     
     public int nearestObject = 0;
+    [HideInInspector]
+    public bool peopleWalking = false;
     //0:near nothing
     //1:dog
     //2:band
@@ -58,19 +60,26 @@ public class DogActivity : MonoBehaviour
     //when there is no other dog, just bark
     public void DogBark() 
     {
-        animator.SetBool("Bark", true);
-        switch (nearestObject) 
+        if (peopleWalking) 
         {
-            case 1://near another dog
-                anotherDog.SetTrigger("Bark");
-                return;
-            case 2://near band
-                band.SetTrigger("Bark");
-                return;
-            case 3://near old man
-                oldManActivity.Bark();
-                return;
+            animator.SetBool("Bark", true);
+
+            /*
+            switch (nearestObject)
+            {
+                case 1://near another dog
+                    anotherDog.SetTrigger("Bark");
+                    return;
+                case 2://near band
+                    band.SetTrigger("Bark");
+                    return;
+                case 3://near old man
+                    oldManActivity.Bark();
+                    return;
+            }
+            */
         }
+
     }
 
     public void BarkStop() 
