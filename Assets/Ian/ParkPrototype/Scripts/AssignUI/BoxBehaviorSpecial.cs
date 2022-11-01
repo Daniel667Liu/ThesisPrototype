@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BoxBehavior : EventTrigger
+public class BoxBehaviorSpecial : EventTrigger
 {
     private Box box;
 
@@ -23,7 +23,7 @@ public class BoxBehavior : EventTrigger
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -44,7 +44,8 @@ public class BoxBehavior : EventTrigger
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
-        GetComponent<Image>().color = new Color(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, 0.78f);
+        transform.GetChild(1).GetComponent<Image>().color = new Color(transform.GetChild(1).GetComponent<Image>().color.r, transform.GetChild(1).GetComponent<Image>().color.g, transform.GetChild(1).GetComponent<Image>().color.b, 0.78f);
+        transform.GetChild(2).GetComponent<Image>().color = new Color(transform.GetChild(2).GetComponent<Image>().color.r, transform.GetChild(2).GetComponent<Image>().color.g, transform.GetChild(2).GetComponent<Image>().color.b, 0.78f);
         screenshot.localScale = Vector3.one * 1f;
         shown = true;
     }
