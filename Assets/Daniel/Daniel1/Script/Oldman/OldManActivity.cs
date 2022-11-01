@@ -28,20 +28,31 @@ public class OldManActivity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void PrepareFood() 
+    public void PrepareFood()
     {
         //start prepare food
+        animator.SetBool("preapre", true);
     }
 
-    public void Feed() 
+    public void PrepareStop()
+    {
+        animator.SetBool("prepare", false);
+    }
+    public void Feed()
     {
         //seccussfully feed
         //should set a bool in animator, since this func  will be called muti-times
+        animator.SetBool("feed", true);
     }
 
+    //call at the end of feed animation
+    public void FeedFinish() 
+    {
+        animator.SetBool("feed", false);
+    }
 
     //call when the dog is near and bark
     public void Bark() 
