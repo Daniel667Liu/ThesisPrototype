@@ -6,6 +6,7 @@ public class MoneyActivity : MonoBehaviour
 {
     Animator animator;
     AudioSource audioSource;
+    public float speed = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,21 +30,49 @@ public class MoneyActivity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SpeedDecrease();
+        SpeedAdjust();
     }
 
+    void SpeedDecrease() 
+    {
+        if (speed > 0.1f) 
+        {
+            speed -= Time.deltaTime;
+        }
+    }
     public void StepOneEvent() 
     {
-        Debug.Log("step1");
+        speed += 1;
+        if (speed > 4.5f) 
+        {
+            speed = 4.5f;
+        }
     }
 
     public void SteoTwoEvent() 
     {
-        Debug.Log("step2");
+        speed += 1;
+        if (speed > 4.5f)
+        {
+            speed = 4.5f;
+        }
     }
 
-    public void ArrivedPoint() 
+    void SpeedAdjust() 
     {
-
+        if (speed > 3f)
+        {
+            float speedAdjusted = speed - 3f;
+            if (speedAdjusted > 1f)
+            {
+                speedAdjusted = 1f;
+            }
+            animator.speed = speedAdjusted;
+        }
+        else 
+        {
+            animator.speed = 0f;
+        }
     }
 }

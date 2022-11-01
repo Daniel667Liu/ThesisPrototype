@@ -6,7 +6,7 @@ public class MoneyInput : MonoBehaviour
 {
     KeyCode key1;
     KeyCode key2;
-    public bool arrivedPoint;
+    
     MoneyActivity activity;
 
     //state 0, key1 pressed, state 1, key2 pressed
@@ -35,12 +35,7 @@ public class MoneyInput : MonoBehaviour
 
     void CheckPress() 
     {
-        if (arrivedPoint)
-        {
-            activity.ArrivedPoint();
-        }
-        else 
-        {
+        
             //return when press 2 keys at the same time
             if (Input.GetKey(key1) && Input.GetKeyDown(key2))
             {
@@ -71,7 +66,7 @@ public class MoneyInput : MonoBehaviour
                     state = 0;
                 }
             }
-        }
+        
         
     }
 
@@ -81,9 +76,5 @@ public class MoneyInput : MonoBehaviour
     }
 
 
-    //call in the animator, mark as arrived the band
-    public void Arrive() 
-    {
-        arrivedPoint = true;
-    }
+    
 }
