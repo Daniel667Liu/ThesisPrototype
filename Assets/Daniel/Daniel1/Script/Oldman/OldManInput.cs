@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class OldManInput : MonoBehaviour
 {
-    public float CD = 1f;
+    KeyCode key1;
+    KeyCode key2;
+    KeyCode key3;
+    KeyCode key4;
+    bool key1P;
+    bool key2P;
+    bool key3P;
+    bool key4P;
+    public float CD = 5f;
     float waitedTime;
     bool foodPrepared;
     OldManActivity activity;
@@ -14,49 +22,60 @@ public class OldManInput : MonoBehaviour
         activity = GetComponent<OldManActivity>();   
     }
 
+    public void AssignKeys(KeyCode keyA, KeyCode keyB,KeyCode keyC,KeyCode keyD) 
+    {
+        key1 = keyA;
+        key2 = keyB;
+        key3 = keyC;
+        key4 = keyD;
+    }
+
     // Update is called once per frame
     void Update()
     {
         Wait();
         CheckPress();
     }
+    void BoolSetting() 
+    {
+        SingleBoolSetting(key1, key1P);
+        SingleBoolSetting(key2, key2P);
+        SingleBoolSetting(key3, key3P);
+        SingleBoolSetting(key4, key4P);
+    }
 
+    void SingleBoolSetting(KeyCode key, bool keyBool) 
+    {
+        if (Input.GetKeyDown(key)) 
+        {
+            keyBool = true;
+        }
+        if (Input.GetKeyUp(key)) 
+        {
+            keyBool = false;
+        }
+    }
     void CheckPress() 
     {
-        if (waitedTime >= CD) 
+        if (waitedTime >= CD)
         {
-            if (Input.GetMouseButtonDown(2))
+            if (key1P && key2P && key3P && key4P) //when 4 keys are pressed 
             {
-                //press the middle button
-                //start prepare food
-                waitedTime = 0f;
                 activity.PrepareFood();
             }
-
-            if (Input.GetMouseButton(2))
+            else 
             {
-                //hold the middle button
-                if (Input.mouseScrollDelta.y > 0)
+                if (foodPrepared)
                 {
-                    //middle mouse scroll up
-                    if (foodPrepared)
-                    {
-                        //successfully trigger the interaction
-                        activity.Feed();
-                    }
-
+                    activity.Feed();
                 }
-            }
-
-
-            if (Input.GetMouseButtonUp(2)) 
-            {
-                //should be set to true in the animation clip prepare
+                else 
+                {
+                    activity.PrepareStop();
+                }
                 foodPrepared = false;
             }
-            
         }
-        
     }
 
     void Wait() 

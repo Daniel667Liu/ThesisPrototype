@@ -44,8 +44,10 @@ public class BoxBehaviorSpecial : EventTrigger
     public override void OnPointerDown(PointerEventData eventData)
     {
         base.OnPointerDown(eventData);
-        transform.GetChild(1).GetComponent<Image>().color = new Color(transform.GetChild(1).GetComponent<Image>().color.r, transform.GetChild(1).GetComponent<Image>().color.g, transform.GetChild(1).GetComponent<Image>().color.b, 0.78f);
-        transform.GetChild(2).GetComponent<Image>().color = new Color(transform.GetChild(2).GetComponent<Image>().color.r, transform.GetChild(2).GetComponent<Image>().color.g, transform.GetChild(2).GetComponent<Image>().color.b, 0.78f);
+        for (int i=1; i<transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<Image>().color = new Color(transform.GetChild(i).GetComponent<Image>().color.r, transform.GetChild(i).GetComponent<Image>().color.g, transform.GetChild(i).GetComponent<Image>().color.b, 0.78f);
+        }
         screenshot.localScale = Vector3.one * 1f;
         shown = true;
     }
