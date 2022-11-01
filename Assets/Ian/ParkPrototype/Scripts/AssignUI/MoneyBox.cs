@@ -42,7 +42,7 @@ public class MoneyBox : Box
             if (validBotLeftKeys.Contains(hit.collider.name))
             {
                 KeyCode[] keys = getKeys(hit.collider.name);
-                moneyInput.AssignKeys(keys[0], keys[1]);
+                if (moneyInput != null) moneyInput.AssignKeys(keys[0], keys[1]);
                 return hit.collider.transform.position + (transform.position - pointer.position);
             }
         }
