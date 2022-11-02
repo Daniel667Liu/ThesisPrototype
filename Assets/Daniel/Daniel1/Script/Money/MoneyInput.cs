@@ -17,7 +17,7 @@ public class MoneyInput : MonoBehaviour
     void Start()
     {
         activity = GetComponent<MoneyActivity>();
-        test();
+        //test();
     }
 
     // Update is called once per frame
