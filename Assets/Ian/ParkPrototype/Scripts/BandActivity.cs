@@ -18,6 +18,8 @@ public class BandActivity : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
+        anim.speed = 0;
     }
 
     // Update is called once per frame
@@ -25,13 +27,13 @@ public class BandActivity : MonoBehaviour
     {
         if (playMeter > 0f)
         {
-            playMeter -= Time.deltaTime;
+            playMeter -= Time.deltaTime * 1.5f;
 
             if (playMeter > 3f)
             {
                 float val = ((playMeter > 4f) ? 4 : playMeter) - 3f;
                 anim.speed = val;
-                audioSource.volume = val;
+                //audioSource.volume = val;
                 setCrowdSpeed(val);
                 isPlaying = true;
             }
@@ -57,7 +59,9 @@ public class BandActivity : MonoBehaviour
 
         for (int i=0; i<crowd.transform.childCount; i++)
         {
-            Animator ani = crowd.transform.GetChild(i).GetComponent<Animator>();
+            if (i == 4) continue;
+
+            Animator ani = crowd.transform.GetChild(i).GetChild(0).GetComponent<Animator>();
             ani.speed = speed;
         }
     }

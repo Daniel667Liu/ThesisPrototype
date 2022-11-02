@@ -10,6 +10,7 @@ public class BoxBehavior : EventTrigger
 
     private Vector2 offset;
     private Transform screenshot;
+    private Vector3 prevMousePos;
 
     private bool shown;
 
@@ -56,7 +57,7 @@ public class BoxBehavior : EventTrigger
 
         if (centerPos.x != -1001)
         {
-            transform.position = new Vector3(centerPos.x, centerPos.y, transform.position.z);
+            transform.position = new Vector3(centerPos.x, centerPos.y, centerPos.z);
         }
     }
 
@@ -64,14 +65,19 @@ public class BoxBehavior : EventTrigger
     {
         base.OnBeginDrag(eventData);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        offset = mousePos - GetComponent<RectTransform>().position;
+        //offset = mousePos - GetComponent<RectTransform>().localPosition;
+        prevMousePos = Input.mousePosition;
     }
 
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Debug.Log(Input.mousePosition);
         //Debug.Log(mousePos);
-        GetComponent<RectTransform>().position = new Vector3(mousePos.x, mousePos.y, -9) - new Vector3(offset.x, offset.y, 0f);
+        //GetComponent<RectTransform>().position = new Vector3(mousePos.x, mousePos.y, -9) - new Vector3(offset.x, offset.y, 0f);
+        GetComponent<RectTransform>().localPosition += (Input.mousePosition - prevMousePos) * 1920f / Screen.width;
+        prevMousePos = Input.mousePosition;
     }
 }

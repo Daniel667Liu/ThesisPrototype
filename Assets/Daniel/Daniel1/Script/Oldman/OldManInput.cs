@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class OldManInput : MonoBehaviour
 {
-    KeyCode key1;
-    KeyCode key2;
-    KeyCode key3;
-    KeyCode key4;
-    bool key1P;
-    bool key2P;
-    bool key3P;
-    bool key4P;
+    public KeyCode key1;
+    public KeyCode key2;
+    public KeyCode key3;
+    public KeyCode key4;
+    public bool key1P;
+    public bool key2P;
+    public bool key3P;
+    public bool key4P;
     public float CD = 5f;
     float waitedTime;
     bool foodPrepared;
@@ -24,7 +24,7 @@ public class OldManInput : MonoBehaviour
     void Start()
     {
         activity = GetComponent<OldManActivity>();
-        AssignKeys(KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R);
+        //AssignKeys(KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R);
         waitedTime = 6f;
     }
 

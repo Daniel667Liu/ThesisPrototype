@@ -35,7 +35,8 @@ public class PianoBox : Box
     public override Vector3 CheckInput()
     {
         RaycastHit hit;
-        Vector3 origin = new Vector3(pointer.position.x, pointer.position.y, Camera.main.transform.position.z);
+        //Vector3 origin = new Vector3(pointer.position.x, pointer.position.y, Camera.main.transform.position.z);
+        Vector3 origin = new Vector3(pointer.position.x, pointer.position.y, pointer.position.z) - pointer.forward;
         if (Physics.Raycast(origin, Camera.main.transform.forward, out hit, Mathf.Infinity, keyLayer))
         {
             Debug.Log(hit.collider.name);
