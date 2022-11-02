@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class BandActivity : MonoBehaviour
 {
+    public GameObject crowd;
+
     private Animator anim;
     private AudioSource audioSource;
 
     private bool isPlaying;
     private float playMeter;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +29,10 @@ public class BandActivity : MonoBehaviour
 
             if (playMeter > 3f)
             {
-                anim.speed = ((playMeter > 4f) ? 4 : playMeter) - 3f;
-                audioSource.volume = ((playMeter > 4f) ? 4 : playMeter) - 3f;
+                float val = ((playMeter > 4f) ? 4 : playMeter) - 3f;
+                anim.speed = val;
+                audioSource.volume = val;
+                setCrowdSpeed(val);
                 isPlaying = true;
             }
             else
@@ -44,5 +49,16 @@ public class BandActivity : MonoBehaviour
 
         if (playMeter > 4.5f) playMeter = 4.5f;
 
+    }
+
+    private void setCrowdSpeed(float speed)
+    {
+        if (crowd == null) return;
+
+        for (int i=0; i<crowd.transform.childCount; i++)
+        {
+            Animator ani = crowd.transform.GetChild(i).GetComponent<Animator>();
+            ani.speed = speed;
+        }
     }
 }
