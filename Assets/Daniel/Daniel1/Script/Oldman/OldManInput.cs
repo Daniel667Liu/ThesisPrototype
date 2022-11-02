@@ -8,19 +8,23 @@ public class OldManInput : MonoBehaviour
     KeyCode key2;
     KeyCode key3;
     KeyCode key4;
-    public bool key1P;
-    public bool key2P;
-    public bool key3P;
-    public bool key4P;
+    bool key1P;
+    bool key2P;
+    bool key3P;
+    bool key4P;
     public float CD = 5f;
-    public float waitedTime;
+    float waitedTime;
     bool foodPrepared;
+    bool prepareTriggered =true;
     OldManActivity activity;
+
+    int state = 0; // 0 is idle, 1 is reaching, 2 is ready to feed
+
     // Start is called before the first frame update
     void Start()
     {
         activity = GetComponent<OldManActivity>();
-        AssignKeys(KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4);
+        AssignKeys(KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R);
         waitedTime = 6f;
     }
 
@@ -35,30 +39,182 @@ public class OldManInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BoolSetting();
-        Wait();
-        CheckPress();
-    }
-    void BoolSetting() 
-    {
-        SingleBoolSetting(key1, key1P);
-        SingleBoolSetting(key2, key2P);
-        SingleBoolSetting(key3, key3P);
-        SingleBoolSetting(key4, key4P);
+        //BoolSetting();
+        //Wait();
+        bools();
+        
+  
     }
 
-    void SingleBoolSetting(KeyCode key, bool keyBool) 
+    void bools()
     {
-        if (Input.GetKeyDown(key)) 
+        if (Input.GetKeyDown(key1))
         {
-            keyBool = true;
+            key1P = true;
         }
-        if (Input.GetKeyUp(key)) 
+        if (Input.GetKeyDown(key2))
         {
-            keyBool = false;
-            
+            key2P = true;
+        }
+        if (Input.GetKeyDown(key3))
+        {
+            key3P = true;
+        }
+        if (Input.GetKeyDown(key4))
+        {
+            key4P = true;
+        }
+
+        if (Input.GetKeyUp(key1))
+        {
+            key1P = false;
+        }
+        if (Input.GetKeyUp(key2))
+        {
+            key2P = false;
+        }
+        if (Input.GetKeyUp(key3))
+        {
+            key3P = false;
+        }
+        if (Input.GetKeyUp(key4))
+        {
+            key4P = false;
+        }
+
+        if (state == 0)
+        {
+            if (key1P && key2P && key3P && key4P)
+            {
+                activity.PrepareFood();
+                state = 1;
+            }
+        }
+        else if (state == 1)
+        {
+            if (!(key1P && key2P && key3P && key4P))
+            {
+                activity.PrepareStop();
+                state = 0;
+            }
+        }
+        else if (state == 2)
+        {
+            if (!(key1P && key2P && key3P && key4P))
+            {
+                activity.Feed();
+                state = 0;
+}
         }
     }
+
+    
+    void BoolSetting() 
+    {
+        if (Input.GetKeyDown(key1)) 
+        {
+            key1P = true;
+            CheckPress();
+        }
+        if (Input.GetKeyDown(key2)) 
+        {
+            key2P = true;
+            CheckPress();
+        }
+        if (Input.GetKeyDown(key3))
+        {
+            key3P = true;
+            CheckPress();
+        }
+        if (Input.GetKeyDown(key4))
+        {
+            key4P = true;
+            CheckPress();
+        }
+
+        if (Input.GetKeyUp(key1)) 
+        {
+            key1P = false;
+            if (foodPrepared)
+            {
+                activity.Feed();
+                waitedTime = 0f;
+                prepareTriggered = true;
+
+            }
+            else
+            {
+                if (!prepareTriggered) 
+                {
+                    activity.PrepareStop();
+                    prepareTriggered = true;
+                }
+                
+            }
+            foodPrepared = false;
+        }
+        if (Input.GetKeyUp(key2))
+        {
+            key2P = false;
+            if (foodPrepared)
+            {
+                activity.Feed();
+                waitedTime = 0f;
+                prepareTriggered = true;
+
+            }
+            else
+            {
+                if (!prepareTriggered)
+                {
+                    activity.PrepareStop();
+                    prepareTriggered = true;
+                }
+            }
+            foodPrepared = false;
+        }
+        if (Input.GetKeyUp(key3))
+        {
+            key3P = false;
+            if (foodPrepared)
+            {
+                activity.Feed();
+                waitedTime = 0f;
+                prepareTriggered = true;
+
+            }
+            else
+            {
+                if (!prepareTriggered)
+                {
+                    activity.PrepareStop();
+                    prepareTriggered = true;
+                }
+            }
+            foodPrepared = false;
+        }
+        if (Input.GetKeyUp(key4))
+        {
+            key4P = false;
+            if (foodPrepared)
+            {
+                activity.Feed();
+                prepareTriggered = true;
+                waitedTime = 0f;
+            }
+            else
+            {
+                if (!prepareTriggered)
+                {
+                    activity.PrepareStop();
+                    prepareTriggered = true;
+                }
+            }
+            foodPrepared = false;
+        }
+    }
+
+    
     void CheckPress() 
     {
         if (waitedTime >= CD)
@@ -67,21 +223,9 @@ public class OldManInput : MonoBehaviour
             if (key1P && key2P && key3P && key4P) //when 4 keys are pressed 
             {
                 activity.PrepareFood();
-            }
-            else 
-            {
-                if (foodPrepared)
-                {
-                    activity.Feed();
-                    activity.PrepareStop();
-                    waitedTime = 0f;
-                }
-                else 
-                {
-                    activity.PrepareStop();
-                }
-                foodPrepared = false;
-            }
+                prepareTriggered = false;   
+         }
+            
         }
     }
 
@@ -93,6 +237,7 @@ public class OldManInput : MonoBehaviour
     //should call in animation clip
     public void FoodPrepared() 
     {
-        foodPrepared = true;
+        //foodPrepared = true;
+        state = 2;
     }
 }

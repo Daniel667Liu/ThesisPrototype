@@ -6,9 +6,14 @@ public class OldManActivity : MonoBehaviour
 {
     Animator animator;
     AudioSource audioSource;
+    public Material sit;
+    public Material prepare;
+    public Material feed;
+    MeshRenderer meshR;
     // Start is called before the first frame update
     void Start()
     {
+        meshR = GetComponent<MeshRenderer>();
         if (TryGetComponent<Animator>(out animator))
         {
         }
@@ -34,30 +39,31 @@ public class OldManActivity : MonoBehaviour
     public void PrepareFood()
     {
         //start prepare food
-        animator.SetBool("prepare", true);
+        animator.SetTrigger("prepare");
     }
+
+    
 
     public void PrepareStop()
     {
-        animator.SetBool("prepare", false);
+        animator.SetTrigger("prepareStop");
+
     }
     public void Feed()
     {
         //seccussfully feed
         //should set a bool in animator, since this func  will be called muti-times
-        animator.SetBool("feed", true);
+        animator.SetTrigger("feed");
     }
 
-    //call at the end of feed animation
-    public void FeedFinish() 
+    public void ResetTriggers()
     {
-        animator.SetBool("feed", false);
-        animator.SetTrigger("feedFinish");
+        animator.ResetTrigger("feed");
     }
 
     //call when the dog is near and bark
     public void Bark() 
     {
-        animator.SetTrigger("Bark");
+        //animator.SetTrigger("Bark");
     }
 }
