@@ -46,15 +46,20 @@ public class FireworkActivity : MonoBehaviour
         animator.SetTrigger("boom");
         Vector3 pos = transform.position;
 
-        GameObject clone = Instantiate(gezi);
-        clone.transform.position += pos;
-        clone.transform.position -= clone.transform.GetChild(0).localPosition;
-        clone.transform.eulerAngles = new Vector3(6.59f, -5.088f, -15.5f);
+        Invoke("ShootBird", 0.5f);
     }
 
     //play the effect when of start to interact with
     public void StartInteract() 
     {
        
+    }
+
+    private void ShootBird()
+    {
+        GameObject clone = Instantiate(gezi);
+        //clone.transform.position = new Vector3(-0.5024103f, -0.4296535f, -0.765976f);
+        clone.transform.position = new Vector3(-0.55f, -0.48f, -0.79f);
+        clone.transform.eulerAngles = new Vector3(6.59f, -5.088f, -15.5f);
     }
 }
