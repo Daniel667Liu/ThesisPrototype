@@ -24,7 +24,7 @@ public class OldManInput : MonoBehaviour
     void Start()
     {
         activity = GetComponent<OldManActivity>();
-        AssignKeys(KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R);
+        //AssignKeys(KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R);
         waitedTime = 6f;
     }
 

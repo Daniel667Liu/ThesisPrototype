@@ -11,7 +11,7 @@ public class FireworkInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Test();
+        //Test();
         //get the activity script, should be on the same object
         activity = GetComponent<FireworkActivity>();
     }

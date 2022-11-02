@@ -10,7 +10,7 @@ public class DogPeopleInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        test();
+        //test();
         dogActivity = FindObjectOfType<DogActivity>();
         activity = GetComponent<DogPeopleActivity>();
     }

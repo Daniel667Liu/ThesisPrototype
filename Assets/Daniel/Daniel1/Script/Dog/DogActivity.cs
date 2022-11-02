@@ -20,9 +20,8 @@ public class DogActivity : MonoBehaviour
 
     float[] distances;
 
-
+    AnotherDogActivity anotherDog;
     OldManActivity oldManActivity;
-    public Animator anotherDog;
     public Animator band;
 
     
@@ -32,6 +31,7 @@ public class DogActivity : MonoBehaviour
     {
         distances = new float[3];
         oldManActivity = FindObjectOfType<OldManActivity>();
+        anotherDog = FindObjectOfType<AnotherDogActivity>();
         if (TryGetComponent<Animator>(out animator))
         {
         }
@@ -66,7 +66,7 @@ public class DogActivity : MonoBehaviour
             switch (nearestObject)
             {
                 case 1://near another dog
-                    anotherDog.SetTrigger("Bark");
+                anotherDog.Bark();
                     return;
                 case 2://near band
                     band.SetTrigger("Bark");
