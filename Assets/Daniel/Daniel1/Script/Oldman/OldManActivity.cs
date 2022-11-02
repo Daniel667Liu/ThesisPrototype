@@ -10,9 +10,13 @@ public class OldManActivity : MonoBehaviour
     public Material prepare;
     public Material feed;
     MeshRenderer meshR;
+    int geziIndex = 0;
+    public GameObject[] gezis;
+    List<GameObject> groundGeZi;
     // Start is called before the first frame update
     void Start()
     {
+        groundGeZi = new List<GameObject>();
         meshR = GetComponent<MeshRenderer>();
         if (TryGetComponent<Animator>(out animator))
         {
@@ -54,6 +58,22 @@ public class OldManActivity : MonoBehaviour
         //seccussfully feed
         //should set a bool in animator, since this func  will be called muti-times
         animator.SetTrigger("feed");
+        GeZiLai();
+    }
+
+    void GeZiLai() 
+    {
+        if (geziIndex < gezis.Length)
+        {
+            gezis[geziIndex].GetComponent<Animator>().SetTrigger("come");
+            groundGeZi.Add(gezis[geziIndex]);
+            geziIndex += 1;
+        }
+        else 
+        {
+            geziIndex = 0;
+        }
+        
     }
 
     public void ResetTriggers()
@@ -65,5 +85,10 @@ public class OldManActivity : MonoBehaviour
     public void Bark() 
     {
         //animator.SetTrigger("Bark");
+        for (int i = groundGeZi.Count-1; i >=0 ; i--) 
+        {
+            groundGeZi[i].GetComponent<Animator>().SetTrigger("go");
+            groundGeZi.RemoveAt(i);
+        }
     }
 }

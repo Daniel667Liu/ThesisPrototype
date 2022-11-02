@@ -25,7 +25,6 @@ public class DogActivity : MonoBehaviour
     public Animator anotherDog;
     public Animator band;
 
-
     
     
     // Start is called before the first frame update
@@ -60,11 +59,10 @@ public class DogActivity : MonoBehaviour
     //when there is no other dog, just bark
     public void DogBark() 
     {
-        if (peopleWalking) 
-        {
+        
             animator.SetBool("Bark", true);
 
-            /*
+            
             switch (nearestObject)
             {
                 case 1://near another dog
@@ -77,8 +75,8 @@ public class DogActivity : MonoBehaviour
                     oldManActivity.Bark();
                     return;
             }
-            */
-        }
+            
+        
 
     }
 

@@ -62,6 +62,6 @@ public class FireworkInput : MonoBehaviour
 
     void Test() 
     {
-        key1 = KeyCode.L;
+        key1 = KeyCode.M;
     }
 }
