@@ -8,18 +8,20 @@ public class OldManInput : MonoBehaviour
     KeyCode key2;
     KeyCode key3;
     KeyCode key4;
-    bool key1P;
-    bool key2P;
-    bool key3P;
-    bool key4P;
+    public bool key1P;
+    public bool key2P;
+    public bool key3P;
+    public bool key4P;
     public float CD = 5f;
-    float waitedTime;
+    public float waitedTime;
     bool foodPrepared;
     OldManActivity activity;
     // Start is called before the first frame update
     void Start()
     {
-        activity = GetComponent<OldManActivity>();   
+        activity = GetComponent<OldManActivity>();
+        AssignKeys(KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4);
+        waitedTime = 6f;
     }
 
     public void AssignKeys(KeyCode keyA, KeyCode keyB,KeyCode keyC,KeyCode keyD) 
@@ -54,12 +56,14 @@ public class OldManInput : MonoBehaviour
         if (Input.GetKeyUp(key)) 
         {
             keyBool = false;
+            
         }
     }
     void CheckPress() 
     {
         if (waitedTime >= CD)
         {
+            
             if (key1P && key2P && key3P && key4P) //when 4 keys are pressed 
             {
                 activity.PrepareFood();
@@ -69,6 +73,8 @@ public class OldManInput : MonoBehaviour
                 if (foodPrepared)
                 {
                     activity.Feed();
+                    activity.PrepareStop();
+                    waitedTime = 0f;
                 }
                 else 
                 {

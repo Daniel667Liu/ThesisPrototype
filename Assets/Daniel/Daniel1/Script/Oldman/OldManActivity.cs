@@ -34,7 +34,7 @@ public class OldManActivity : MonoBehaviour
     public void PrepareFood()
     {
         //start prepare food
-        animator.SetBool("preapre", true);
+        animator.SetBool("prepare", true);
     }
 
     public void PrepareStop()
@@ -52,6 +52,7 @@ public class OldManActivity : MonoBehaviour
     public void FeedFinish() 
     {
         animator.SetBool("feed", false);
+        animator.SetTrigger("feedFinish");
     }
 
     //call when the dog is near and bark
