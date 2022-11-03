@@ -37,6 +37,7 @@ public class MoneyInput : MonoBehaviour
     {
         
             //return when press 2 keys at the same time
+            /*
             if (Input.GetKey(key1) && Input.GetKeyDown(key2))
             {
                 return;
@@ -45,6 +46,7 @@ public class MoneyInput : MonoBehaviour
             {
                 return;
             }
+            */
 
             if (state == 0)
             {
