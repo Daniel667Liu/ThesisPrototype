@@ -66,14 +66,15 @@ public class DogActivity : MonoBehaviour
             switch (nearestObject)
             {
                 case 1://near another dog
-                anotherDog.Bark();
-                    return;
+                       //anotherDog.Bark();
+                Invoke("anotherDogBark", 0.45f);
+                    break;
                 case 2://near band
                     band.SetTrigger("Bark");
-                    return;
+                    break;
                 case 3://near old man
                     oldManActivity.Bark();
-                    return;
+                    break;
             }
             
         
@@ -113,6 +114,11 @@ public class DogActivity : MonoBehaviour
         {
             nearestObject = 0;
         }
+    }
+
+    void anotherDogBark()
+    {
+        anotherDog.Bark();
     }
 
 }
