@@ -13680,6 +13680,10 @@ PrefabInstance:
       propertyPath: nearObjects.Array.data[2]
       value: 
       objectReference: {fileID: 610516067}
+    - target: {fileID: 3932990794469085815, guid: 29d12256afb01f948aaba554462e0086, type: 3}
+      propertyPath: CD
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3932990794669580810, guid: 29d12256afb01f948aaba554462e0086, type: 3}
       propertyPath: m_Name
       value: Dog_People
