@@ -20,6 +20,7 @@ public class BandActivity : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         anim.speed = 0;
+        setCrowdSpeed(0);
     }
 
     // Update is called once per frame
@@ -29,9 +30,9 @@ public class BandActivity : MonoBehaviour
         {
             playMeter -= Time.deltaTime * 1.5f;
 
-            if (playMeter > 3f)
+            if (playMeter > 2.5f)
             {
-                float val = ((playMeter > 4f) ? 4 : playMeter) - 3f;
+                float val = ((playMeter > 3.5f) ? 3.5f : playMeter) - 2.5f;
                 anim.speed = val;
                 //audioSource.volume = val;
                 setCrowdSpeed(val);
@@ -49,7 +50,7 @@ public class BandActivity : MonoBehaviour
     {
         playMeter += 1f;
 
-        if (playMeter > 4.5f) playMeter = 4.5f;
+        if (playMeter > 4.0f) playMeter = 4.0f;
 
     }
 
