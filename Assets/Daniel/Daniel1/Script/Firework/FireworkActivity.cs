@@ -36,23 +36,25 @@ public class FireworkActivity : MonoBehaviour
     //playe the effect of halfway
     public void HalfSuccess() 
     {
-        
+        animator.SetBool("Hold", false);
     }
 
 
     //play the effect of successful interaction
     public void Success() 
     {
+        //animator.SetBool("HalfSuccess", false);
         animator.SetTrigger("boom");
+        animator.SetBool("Hold", false);
         Vector3 pos = transform.position;
 
-        Invoke("ShootBird", 0.5f);
+        Invoke("ShootBird", 0.2f);
     }
 
     //play the effect when of start to interact with
     public void StartInteract() 
     {
-       
+       animator.SetBool("Hold", true);
     }
 
     private void ShootBird()
