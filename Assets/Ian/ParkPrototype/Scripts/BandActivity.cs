@@ -20,6 +20,7 @@ public class BandActivity : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         anim.speed = 0;
+        audioSource.volume = 0;
         setCrowdSpeed(0);
     }
 
@@ -34,7 +35,8 @@ public class BandActivity : MonoBehaviour
             {
                 float val = ((playMeter > 3.5f) ? 3.5f : playMeter) - 2.5f;
                 anim.speed = val;
-                //audioSource.volume = val;
+                if (!audioSource.isPlaying) audioSource.Play();
+                audioSource.volume = val;
                 setCrowdSpeed(val);
                 isPlaying = true;
             }
