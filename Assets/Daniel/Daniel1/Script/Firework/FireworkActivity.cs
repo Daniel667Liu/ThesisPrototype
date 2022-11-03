@@ -49,6 +49,7 @@ public class FireworkActivity : MonoBehaviour
         Vector3 pos = transform.position;
 
         Invoke("ShootBird", 0.2f);
+        audioSource.PlayOneShot(audioSource.clip, 2f);
     }
 
     //play the effect when of start to interact with
@@ -64,4 +65,5 @@ public class FireworkActivity : MonoBehaviour
         clone.transform.position = new Vector3(-0.55f, -0.48f, -0.79f);
         clone.transform.eulerAngles = new Vector3(6.59f, -5.088f, -15.5f);
     }
+
 }

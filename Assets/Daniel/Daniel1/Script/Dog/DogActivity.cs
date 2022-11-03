@@ -61,6 +61,7 @@ public class DogActivity : MonoBehaviour
     {
         
             animator.SetBool("Bark", true);
+            audioSource.PlayOneShot(audioSource.clip, 0.8f);
 
             
             switch (nearestObject)
@@ -71,6 +72,7 @@ public class DogActivity : MonoBehaviour
                     break;
                 case 2://near band
                     band.SetTrigger("Bark");
+
                     break;
                 case 3://near old man
                     oldManActivity.Bark();
@@ -104,7 +106,7 @@ public class DogActivity : MonoBehaviour
                 nearestObject = i+1;
             }
         }
-        Debug.Log("cal");
+        //Debug.Log("cal");
         return minDistance;
     }
 

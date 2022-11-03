@@ -75,4 +75,9 @@ public class MoneyActivity : MonoBehaviour
             animator.speed = 0f;
         }
     }
+
+    public void PlaySound()
+    {
+        audioSource.Play();
+    }
 }
